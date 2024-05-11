@@ -1,0 +1,29 @@
+﻿@model News.Web.Models.ViewModels.AddTagRequest 
+@{
+}
+
+<div class="bg-secondary bg-opacity-10 py-2">
+    <div class="container">
+        <h1>Thêm thẻ mới</h1>
+    </div>
+</div>
+
+<div class="container py-5">
+    <form method="post">
+        <div class="mb-3">
+            <lable class="form-label">Tên thẻ</lable>
+            <input type="text" class="form-control" id="name" asp-for="Name" />
+            <span class="text-danger" asp-validation-for="Name"></span>
+        </div>
+
+        <div class="mb-3">
+            <lable class="form-label">Tên hiển thị</lable>
+            <input type="text" class="form-control" id="displayName" asp-for="DisplayName" />
+            <span class="text-danger" asp-validation-for="DisplayName"></span>
+        </div>
+
+        <div class="mb-3">
+            <button type="submit" class="btn btn-dark">Xác nhận</button>
+        </div>
+    </form>
+</div>

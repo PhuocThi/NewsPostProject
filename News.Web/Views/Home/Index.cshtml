@@ -1,0 +1,78 @@
+﻿@model News.Web.Models.ViewModels.HomeViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container col-xxl-8 px-4 py-5">
+    <div class="row align-items-center g-5 py-5">
+        <div class="col-12 col-lg-6">
+            <h1 class="display-5 fw-bold lh-1 mb-3">
+                Tin tức hàng ngày
+            </h1>
+            <p class="lead">
+                Luôn cung cấp những tin tức liên quan đến các lĩnh vực
+                giải trí, kinh tế, thể thao, chính trị,...Các tin tức
+                luôn được cập nhật kịp thời gian.
+            </p>
+        </div>
+
+        <div class="col-12 col-lg-6">
+            <img src="https://cdn.tuoitre.vn/zoom/480_300/471584752817336320/2023/10/14/3875835257012916581735352675209252201479388n-16972433798471193039663.png" 
+                 alt="Thi-tintuc"
+                 class="d-block mx-lg-auto img-fluid" width="300"/>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-6 d-flex">
+            @if(Model!=null && Model.Tags.Any())
+            {
+                @foreach(var item in Model.Tags)
+                {
+                    <span class="badge bg-dark me-1">
+                        @item.Name
+                    </span>
+                }
+            }
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-6">
+            @if(Model!=null && Model.NewsPosts.Any())
+            {
+                foreach(var item in Model.NewsPosts)
+                {
+                    <div class="mb-5 bg-light box-shadow p-5">
+                        <img src="@item.FeaturedImageUrl" alt="@item.Heading" class="mb-2 d-block img-fluid"/>
+                        <h2 class="mb-4">@item.Heading</h2>
+                        <p class="mb-4">
+                            Tác giả: @item.Author
+                            <br />
+                            Ngày đăng: @item.PublishedDate.ToShortDateString()
+                        </p>
+
+                        <p class="mb-4">
+                            @foreach(var tag in item.Tags)
+                            {
+                                <span class="badge bg-secondary me-1">@tag.Name</span>
+                            }
+                        </p>
+
+                        <p class="mb-4">
+                            @item.ShortDescription
+                        </p>
+
+                        <a class="btn btn-dark" asp-area="" asp-controller="News"
+                            asp-action="Index" asp-route-urlHandle="@item.UrlHandle">Chi tiết</a>
+                    </div>
+
+                }
+            }
+        </div>
+    </div>
+</div>

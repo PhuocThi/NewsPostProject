@@ -1,0 +1,44 @@
+﻿@model List<News.Web.Models.Domain.Tag>
+@{
+}
+
+<div class="bg-secondary bg-opacity-10 py-2">
+    <div class="container">
+        <h1>Tất cả các thẻ</h1>
+    </div>
+</div>
+
+<div class="container py-5">
+    @if(Model!=null && Model.Any())
+    {
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Tên thẻ</th>
+                    <th>Tên hiển thị</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var tag in Model)
+                {
+                    <tr>
+                        <td>@tag.Id</td>
+                        <td>@tag.Name</td>
+                        <td>@tag.DisplayName</td>
+                        <td class="d-flex justify-content-center">
+                            <a asp-action="Edit" asp-area="" asp-controller="AdminTags"
+                                asp-route-id="@tag.Id" class="btn btn-primary">
+                                Chỉnh sửa</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>Không tìm thấy thẻ!</p>
+    }
+</div>
